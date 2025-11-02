@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RITESH CORPORATION</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>/* Sidebar Header */
+.sidebar-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background: linear-gradient(135deg, #181818 90%, #232323 100%);
+    opacity: 0.98;
+    z-index: 900;
+    box-shadow: 4px 0 20px 0 rgba(0,0,0,0.25);
+}
+
+      .sidebar-header {
+          position: fixed;
+          top: 30px;
+          left: 20px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          background: rgba(26, 26, 26, 0.9);
+          padding: 12px 20px;
+          border-radius: 12px;
+          border: 1px solid rgba(247, 228, 121, 0.2);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+          z-index: 1001;
+          width: auto;
+          backdrop-filter: blur(10px);
+      }
+      
+      .sidebar-header .logo {
+          width: 35px;
+          height: 35px;
+          object-fit: contain;
+          margin-right: 12px;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(247, 228, 121, 0.3);
+      }
+      
+      .sidebar-header .title {
+          font-family: 'Arial', sans-serif;
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #ffffff;
+          margin: 0;
+          letter-spacing: 1px;
+          text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      }
+      
+      /* Decorative line under header */
+      .header-divider {
+          position: fixed;
+          top: 110px;
+          left: 0px;
+          width: 300px;
+          height: 2px;
+          background: linear-gradient(
+              90deg,
+              rgba(102, 102, 102, 0) 0%,
+              rgba(102, 102, 102, 0.8) 20%,
+              rgba(102, 102, 102, 1) 50%,
+              rgba(102, 102, 102, 0.8) 80%,
+              rgba(102, 102, 102, 0) 100%
+          );
+          box-shadow: 
+              0 0 8px rgba(102, 102, 102, 0.6),
+              0 0 15px rgba(102, 102, 102, 0.4);
+          z-index: 998;
+      }
+      
+      /* From Uiverse.io by Lakshay-art - Animated Search Bar */
+      .grid {
+          display: none;
+      }
+      
+      #poda {
+          position: fixed;
+          top: 150px;
+          left: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+          max-width: 200px;
+      }
+      
+      .white,
+      .border,
+      .darkBorderBg,
+      .glow {
+          max-height: 60px;
+          max-width: 220px;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          overflow: hidden;
+          z-index: -1;
+          border-radius: 10px;
+          filter: blur(2px);
+      }
+      
+      .input {
+          background-color: #010201;
+          border: none;
+          width: 200px;
+          height: 50px;
+          border-radius: 10px;
+          color: white;
+          padding-inline: 35px;
+          font-size: 16px;
+          max-width: 200px;
+      }
+      
+      .input::placeholder {
+          color: #c0b9c0;
+      }
+      
+      .input:focus {
+          outline: none;
+      }
+      
+      #main:focus-within > #input-mask {
+          display: none;
+      }
+      
+      #input-mask {
+          pointer-events: none;
+          width: 70px;
+          height: 14px;
+          position: absolute;
+          background: linear-gradient(90deg, transparent, black);
+          top: 18px;
+          left: 40px;
+      }
+      
+      #pink-mask {
+          pointer-events: none;
+          width: 20px;
+          height: 14px;
+          position: absolute;
+          background: #cf30aa;
+          top: 18px;
+          left: 6px;
+          filter: blur(12px);
+          opacity: 0.8;
+          transition: all 2s;
+      }
+      
+      #main:hover > #pink-mask {
+          opacity: 0;
+      }
+      
+      .white {
+          max-height: 63px;
+          max-width: 275px;
+          border-radius: 10px;
+          filter: blur(2px);
+      }
+      
+      .white::before {
+          content: "";
+          z-index: -2;
+          text-align: center;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(83deg);
+          position: absolute;
+          width: 600px;
+          height: 600px;
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          filter: brightness(1.4);
+          background-image: conic-gradient(
+              rgba(0, 0, 0, 0) 0%,
+              #a099d8,
+              rgba(0, 0, 0, 0) 8%,
+              rgba(0, 0, 0, 0) 50%,
+              #dfa2da,
+              rgba(0, 0, 0, 0) 58%
+          );
+          transition: all 2s;
+      }
+      
+      .border {
+          max-height: 59px;
+          max-width: 270px;
+          border-radius: 11px;
+          filter: blur(0.5px);
+      }
+      
+      .border::before {
+          content: "";
+          z-index: -2;
+          text-align: center;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(70deg);
+          position: absolute;
+          width: 600px;
+          height: 600px;
+          filter: brightness(1.3);
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          background-image: conic-gradient(
+              #1c191c,
+              #402fb5 5%,
+              #1c191c 14%,
+              #1c191c 50%,
+              #cf30aa 60%,
+              #1c191c 64%
+          );
+          transition: all 2s;
+      }
+      
+      .darkBorderBg {
+          max-height: 65px;
+          max-width: 285px;
+      }
+      
+      .darkBorderBg::before {
+          content: "";
+          z-index: -2;
+          text-align: center;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(82deg);
+          position: absolute;
+          width: 600px;
+          height: 600px;
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          background-image: conic-gradient(
+              rgba(0, 0, 0, 0),
+              #18116a,
+              rgba(0, 0, 0, 0) 10%,
+              rgba(0, 0, 0, 0) 50%,
+              #6e1b60,
+              rgba(0, 0, 0, 0) 60%
+          );
+          transition: all 2s;
+      }
+      
+      #poda:hover > .darkBorderBg::before {
+          transform: translate(-50%, -50%) rotate(-98deg);
+      }
+      
+      #poda:hover > .glow::before {
+          transform: translate(-50%, -50%) rotate(-120deg);
+      }
+      
+      #poda:hover > .white::before {
+          transform: translate(-50%, -50%) rotate(-97deg);
+      }
+      
+      #poda:hover > .border::before {
+          transform: translate(-50%, -50%) rotate(-110deg);
+      }
+      
+      #poda:focus-within > .darkBorderBg::before {
+          transform: translate(-50%, -50%) rotate(442deg);
+          transition: all 4s;
+      }
+      
+      #poda:focus-within > .glow::before {
+          transform: translate(-50%, -50%) rotate(420deg);
+          transition: all 4s;
+      }
+      
+      #poda:focus-within > .white::before {
+          transform: translate(-50%, -50%) rotate(443deg);
+          transition: all 4s;
+      }
+      
+      #poda:focus-within > .border::before {
+          transform: translate(-50%, -50%) rotate(430deg);
+          transition: all 4s;
+      }
+      
+      .glow {
+          overflow: hidden;
+          filter: blur(30px);
+          opacity: 0.4;
+          max-height: 130px;
+          max-width: 300px;
+      }
+      
+      .glow:before {
+          content: "";
+          z-index: -2;
+          text-align: center;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(60deg);
+          position: absolute;
+          width: 999px;
+          height: 999px;
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          background-image: conic-gradient(
+              #000,
+              #402fb5 5%,
+              #000 38%,
+              #000 50%,
+              #cf30aa 60%,
+              #000 87%
+          );
+          transition: all 2s;
+      }
+      
+      @keyframes rotate {
+          100% {
+              transform: translate(-50%, -50%) rotate(450deg);
+          }
+      }
+      
+      #filter-icon {
+          position: absolute;
+          top: 9px;
+          right: 9px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 2;
+          max-height: 32px;
+          max-width: 30px;
+          height: 100%;
+          width: 100%;
+          isolation: isolate;
+          overflow: hidden;
+          border-radius: 8px;
+          background: linear-gradient(180deg, #161329, black, #1d1b4b);
+          border: 1px solid transparent;
+      }
+      
+      #filter-icon svg {
+          width: 14px;
+          height: 14px;
+      }
+      
+      #filter-icon svg {
+          width: 18px;
+          height: 18px;
+      }
+      
+      .filterBorder {
+          height: 34px;
+          width: 32px;
+          position: absolute;
+          overflow: hidden;
+          top: 8px;
+          right: 8px;
+          border-radius: 8px;
+      }
+      
+      .filterBorder::before {
+          content: "";
+          text-align: center;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(90deg);
+          position: absolute;
+          width: 600px;
+          height: 600px;
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          filter: brightness(1.35);
+          background-image: conic-gradient(
+              rgba(0, 0, 0, 0),
+              #3d3a4f,
+              rgba(0, 0, 0, 0) 50%,
+              rgba(0, 0, 0, 0) 50%,
+              #3d3a4f,
+              rgba(0, 0, 0, 0) 100%
+          );
+          animation: rotate 4s linear infinite;
+      }
+      
+      #main {
+          position: relative;
+      }
+      
+      #search-icon {
+          position: absolute;
+          left: 10px;
+          top: 16px;
+      }
+      
+      #search-icon svg {
+          width: 16px;
+          height: 16px;
+      }
+      
+      /* From Uiverse.io by Smit-Prajapati */ 
+      .radio-container {
+          --main-color: #ffffff;
+          --main-color-opacity: #ffffff1c;
+      
+          /* change this according inputs count */
+          --total-radio: 6;
+      
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          top: 220px;
+          left: 0px;
+          padding-left: 1rem;
+          z-index: 1000;
+      }
+      
+      .radio-container input {
+          cursor: pointer;
+          appearance: none;
+      }
+      
+      .radio-container .glider-container {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          background: linear-gradient(
+              0deg,
+              rgba(0, 0, 0, 0) 0%,
+              rgba(27, 27, 27, 1) 50%,
+              rgba(0, 0, 0, 0) 100%
+          );
+          width: 1px;
+      }
+      
+      .radio-container .glider-container .glider {
+          position: relative;
+          height: calc(100% / var(--total-radio));
+          width: 100%;
+          background: linear-gradient(
+              0deg,
+              rgba(0, 0, 0, 0) 0%,
+              var(--main-color) 50%,
+              rgba(0, 0, 0, 0) 100%
+          );
+          transition: transform 0.5s cubic-bezier(0.37, 1.95, 0.66, 0.56);
+      }
+      
+      .radio-container .glider-container .glider::before {
+          content: "";
+          position: absolute;
+          height: 60%;
+          width: 300%;
+          top: 50%;
+          transform: translateY(-50%);
+          background: var(--main-color);
+          filter: blur(10px);
+      }
+      
+      .radio-container .glider-container .glider::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          height: 100%;
+          width: 150px;
+          background: linear-gradient(
+              90deg,
+              var(--main-color-opacity) 0%,
+              rgba(0, 0, 0, 0) 100%
+          );
+      }
+      
+      .radio-container label {
+          cursor: pointer;
+          padding: 1.2rem 1.5rem;
+          position: relative;
+          color: #8a8a8a;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          font-family: 'Segoe UI', 'Roboto', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          font-size: 1.15rem;
+          font-weight: 600;
+          letter-spacing: 0.8px;
+          text-transform: uppercase;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(5px);
+      }
+      
+      .radio-container label svg {
+          width: 22px;
+          height: 22px;
+          stroke: currentColor;
+          stroke-width: 2.2;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+      }
+      
+      .radio-container input:checked + label {
+          color: var(--main-color);
+          text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.3);
+          transform: translateX(8px);
+      }
+      
+      .radio-container input:checked + label svg {
+          filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+          transform: scale(1.1);
+      }
+      
+      .radio-container label:hover {
+          color: #b8b8b8;
+          transform: translateX(4px);
+          text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      }
+      
+      .radio-container label:hover svg {
+          filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+          transform: scale(1.05);
+      }
+      
+      .radio-container input:nth-of-type(1):checked ~ .glider-container .glider {
+          transform: translateY(0);
+      }
+      
+      .radio-container input:nth-of-type(2):checked ~ .glider-container .glider {
+          transform: translateY(100%);
+      }
+      
+      .radio-container input:nth-of-type(3):checked ~ .glider-container .glider {
+          transform: translateY(200%);
+      }
+      
+      .radio-container input:nth-of-type(4):checked ~ .glider-container .glider {
+          transform: translateY(300%);
+      }
+      
+      .radio-container input:nth-of-type(5):checked ~ .glider-container .glider {
+          transform: translateY(400%);
+      }
+      
+      .radio-container input:nth-of-type(6):checked ~ .glider-container .glider {
+          transform: translateY(500%);
+      }
+      
+      .radio-container input:nth-of-type(7):checked ~ .glider-container .glider {
+          transform: translateY(600%);
+      }
+      
+      .radio-container input:nth-of-type(8):checked ~ .glider-container .glider {
+          transform: translateY(700%);
+      }
+      
+      .radio-container input:nth-of-type(9):checked ~ .glider-container .glider {
+          transform: translateY(800%);
+      }
+      
+      .radio-container input:nth-of-type(10):checked ~ .glider-container .glider {
+          transform: translateY(900%);
+      }
+      
+      
+      
+      /* Basic page styling */
+      body {
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 300px;
+    width: 3px;
+    height: 100vh;
+    background: rgba(255,255,255,0.94);
+    box-shadow: 0 0 12px 2px rgba(255,255,255,0.45), 0 0 32px 4px rgba(255,255,255,0.18);
+    border-radius: 6px;
+    z-index: 1200;
+    pointer-events: none;
+}
+body {
+          margin: 0;
+          padding: 0;
+          background: linear-gradient(
+              90deg,
+              #1a1a1a 0%,
+              #1a1a1a 300px,
+              #0a0a0a 300px,
+              #0a0a0a 100%
+          );
+          min-height: 100vh;
+      }
+      </style>
+</head>
+<body>
+    <div class="sidebar-background"></div>
+    <!-- Sidebar Header -->
+    <div class="sidebar-header">
+        <img src="{{ url_for('static', filename='LOGO.webp') }}" alt="RITESH OFFICIAL" class="logo">
+        <h1 class="title">RITESH CORPORATION</h1>LUMIN
+    </div>
+
+    <!-- Decorative line under header -->
+    <div class="header-divider"></div>
+
+    <!-- From Uiverse.io by Lakshay-art --> 
+    <div class="grid"></div>
+    <div id="poda">
+        <div class="glow"></div>
+        <div class="darkBorderBg"></div>
+        <div class="darkBorderBg"></div>
+        <div class="darkBorderBg"></div>
+
+        <div class="white"></div>
+
+        <div class="border"></div>
+
+        <div id="main">
+            <input placeholder="Search..." type="text" name="text" class="input" />
+            <div id="input-mask"></div>
+            <div id="pink-mask"></div>
+            <div class="filterBorder"></div>
+            <div id="filter-icon">
+                <svg
+                    preserveAspectRatio="none"
+                    height="27"
+                    width="27"
+                    viewBox="4.8 4.56 14.832 15.408"
+                    fill="none"
+                >
+                    <path
+                        d="M8.16 6.65002H15.83C16.47 6.65002 16.99 7.17002 16.99 7.81002V9.09002C16.99 9.56002 16.7 10.14 16.41 10.43L13.91 12.64C13.56 12.93 13.33 13.51 13.33 13.98V16.48C13.33 16.83 13.1 17.29 12.81 17.47L12 17.98C11.24 18.45 10.2 17.92 10.2 16.99V13.91C10.2 13.5 9.97 12.98 9.73 12.69L7.52 10.36C7.23 10.08 7 9.55002 7 9.20002V7.87002C7 7.17002 7.52 6.65002 8.16 6.65002Z"
+                        stroke="#d6d6e6"
+                        stroke-width="1"
+                        stroke-miterlimit="10"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    ></path>
+                </svg>
+            </div>
+            <div id="search-icon">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    height="24"
+                    fill="none"
+                    class="feather feather-search"
+                >
+                    <circle stroke="url(#search)" r="8" cy="11" cx="11"></circle>
+                    <line
+                        stroke="url(#searchl)"
+                        y2="16.65"
+                        y1="22"
+                        x2="16.65"
+                        x1="22"
+                    ></line>
+                    <defs>
+                        <linearGradient gradientTransform="rotate(50)" id="search">
+                            <stop stop-color="#f8e7f8" offset="0%"></stop>
+                            <stop stop-color="#b6a9b7" offset="50%"></stop>
+                        </linearGradient>
+                        <linearGradient id="searchl">
+                            <stop stop-color="#b6a9b7" offset="0%"></stop>
+                            <stop stop-color="#837484" offset="50%"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- From Uiverse.io by Smit-Prajapati --> 
+    <div class="radio-container">
+        <input checked="" id="radio-dashboard" name="radio" type="radio" />
+        <label for="radio-dashboard">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+            </svg>
+            DASHBOARD
+        </label>
+        <input id="radio-social" name="radio" type="radio" />
+        <label for="radio-social">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="m22 21-3-3m0 0a5.5 5.5 0 1 0-7.78-7.78 5.5 5.5 0 0 0 7.78 7.78Z"/>
+            </svg>
+            SOCIAL
+        </label>
+        <input id="radio-hwid" name="radio" type="radio" />
+        <label for="radio-hwid">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4"/>
+                <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
+                <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+                <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3"/>
+                <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3"/>
+            </svg>
+            HWID RESET
+        </label>
+        <input id="radio-support" name="radio" type="radio" />
+        <label for="radio-support">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 9 5 3-5 3"/>
+            </svg>
+            SUPPORT
+        </label>
+        <input id="radio-settings" name="radio" type="radio" />
+        <label for="radio-settings">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="m12 1 1.09 3.26L16 5l-1.91 1.91L16 10l-2.91.74L12 14l-1.09-3.26L8 10l1.91-1.91L8 5l2.91-.74L12 1Z"/>
+            </svg>
+            SETTINGS
+        </label>
+        <input id="radio-logout" name="radio" type="radio" />
+        <label for="radio-logout" id="logout-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16,17 21,12 16,7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            LOGOUT
+        </label>
+
+        <div class="glider-container">
+            <div class="glider"></div>
+        </div>
+    </div>
+
+<!-- BEGIN DASHBOARD UI (DO NOT TOUCH SIDEBAR CODE ABOVE) -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+  :root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #161616;
+    --bg-panel: #111111;
+    --bg-panel-hover: #181818;
+    --accent-primary: #ffffff;
+    --accent-secondary: #e0e0e0;
+    --text-primary: #fff;
+    --text-secondary: #bbb;
+    --text-dark: #0a0a0a;
+    --border-color: #333;
+    --success-color: #e0e0e0;
+    --error-color: #ff3366;
+    --font-primary: 'Roboto', 'Segoe UI', Arial, sans-serif;
+    --font-headings: 'Orbitron', 'Roboto', sans-serif;
+    --border-radius: 12px;
+    --panel-shadow: 0 8px 32px rgba(0, 255, 136, 0.1);
+    --button-shadow: 0 4px 16px rgba(0, 255, 136, 0.15);
+    --pattern-color: rgba(0, 255, 136, 0.03);
+  }
+
+  .FEAR-dashboard * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: crosshair;
+  }
+
+  /* Make clickable elements use pointer cursor */
+  .titan-dashboard button, 
+  .titan-dashboard a, 
+  .titan-dashboard input[type="submit"],
+  .titan-dashboard .button,
+  .titan-dashboard select {
+    cursor: crosshair;
+  }
+
+  .titan-dashboard {
+    font-family: var(--font-primary);
+    background: #0a0a0a;
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+    overflow-x: hidden;
+    position: relative;
+  }
+  .titan-dashboard::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: none;
+  }
+
+  .titan-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 16px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    transform: translateX(160px);
+  }
+
+  .titan-panel {
+    background: #0a0a0a;
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius);
+    padding: 22px 18px;
+    margin-bottom: 0;
+    box-shadow: none;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .titan-panel:hover {
+    background: rgba(24, 24, 24, 0.9);
+    border-color: var(--accent-primary);
+    box-shadow: none;
+    transform: translateY(-2px);
+  }
+  .titan-panel h2 {
+    font-family: var(--font-headings);
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid rgba(255,255,255,0.18);
+    padding-bottom: 7px;
+    font-weight: 700;
+    position: relative;
+  }
+  .titan-panel h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #fff, #bbb);
+    border-radius: 2px;
+    margin-top: 5px;
+    opacity: 0.7;
+  }
+
+  .titan-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+  }
+  .titan-status strong {
+    font-family: var(--font-headings);
+    color: var(--accent-primary);
+    font-size: 1.1rem;
+  }
+
+  .titan-badge {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-dark);
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.18);
+  }
+
+  .titan-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,255,255,0.22);
+  }
+
+  .titan-section-buttons,
+  .titan-aim-buttons,
+  .titan-tab-buttons,
+  .titan-sniper-buttons,
+  .titan-extra-buttons,
+  .titan-settings-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .titan-button {
+    font-family: var(--font-headings);
+    background: rgba(255,255,255,0.10);
+    color: var(--accent-primary);
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid var(--accent-primary);
+    transition: all 0.3s ease;
+    user-select: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    box-shadow: var(--button-shadow);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    outline: none;
+    z-index: 1;
+  }
+  .titan-button:hover, .titan-button.active {
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-dark);
+    border-color: transparent;
+    box-shadow: 0 0 20px rgba(255,255,255,0.18);
+    transform: translateY(-2px) scale(1.02);
+  }
+  .titan-button:active {
+    transform: scale(0.98);
+  }
+
+  .titan-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: 0.5s;
+  }
+
+  .titan-button:hover::before {
+    left: 100%;
+  }
+
+  .titan-tab-buttons {
+    background: var(--bg-secondary);
+    padding: 7px;
+    border-radius: var(--border-radius);
+    gap: 6px;
+  }
+  .titan-tab-buttons .titan-button {
+    flex: 1;
+    margin: 0 2px;
+    box-shadow: none;
+    min-width: 80px;
+    font-size: 0.98rem;
+    padding: 9px 0;
+  }
+  .titan-tab-buttons .titan-button.active {
+    background: var(--accent-primary);
+    color: var(--text-dark) !important;
+    border-color: var(--accent-primary);
+  }
+
+  .titan-console {
+    background: rgba(17, 17, 17, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255,255,255,0.14);
+    padding: 16px;
+    border-radius: var(--border-radius);
+    min-height: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--accent-primary);
+    overflow-y: auto;
+    max-height: 180px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    box-shadow: 0 0 20px rgba(255,255,255,0.10);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.98rem;
+  }
+
+  .titan-aim-section,
+  .titan-sniper-section,
+  .titan-extra-section,
+  .titan-settings-section {
+    margin-top: 15px;
+    display: grid;
+    gap: 20px;
+  }
+
+  .titan-aim-row,
+  .titan-sniper-row,
+  .titan-extra-row,
+  .titan-settings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-secondary);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .titan-aim-label,
+  .titan-sniper-label,
+  .titan-extra-label,
+  .titan-settings-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-primary);
+    min-width: 150px;
+    flex-shrink: 0;
+  }
+   .titan-aim-row > div:first-child,
+  .titan-sniper-row > div:first-child,
+  .titan-extra-row > div:first-child,
+  .titan-settings-row > div:first-child {
+      flex-grow: 1;
+  }
+
+  .titan-note {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  .titan-select {
+    font-family: var(--font-primary);
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.10);
+    color: var(--accent-primary);
+    border: 2px solid var(--accent-primary);
+    border-radius: 8px;
+    min-width: 120px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 0.98rem;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.10);
+  }
+  .titan-select:hover, .titan-select:focus {
+    border-color: var(--accent-secondary);
+    background: rgba(255,255,255,0.15);
+    color: var(--accent-secondary);
+    outline: none;
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.2);
+  }
+
+  .titan-content-panel {
+    background: #0a0a0a;
+    display: none;
+    animation: fadeInContent 0.5s ease forwards;
+  }
+  .titan-content-panel.active {
+    display: block;
+  }
+  @keyframes fadeInContent {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .titan-notifications-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 12px;
+    z-index: 1000;
+    max-width: 350px;
+    pointer-events: none;
+  }
+
+  .titan-notification {
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-dark);
+    padding: 14px 24px;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    font-size: 0.98rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    box-shadow: 0 8px 25px rgba(255,255,255,0.22);
+    animation: slideIn 0.3s ease forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes fadeOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  /* Light Theme adjustments */
+  .titan-dashboard.light {
+    --bg-primary: #F0F2F5;
+    --bg-secondary: #FFFFFF;
+    --bg-panel: #FFFFFF;
+    --bg-panel-hover: #F8F9FA;
+    --accent-primary: #007BFF;
+    --accent-secondary: #0056b3;
+    --text-primary: #212529;
+    --text-secondary: #6C757D;
+    --border-color: #DEE2E6;
+    --panel-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --button-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    color: var(--text-primary);
+  }
+  .titan-dashboard.light .titan-button {
+    background: linear-gradient(145deg, #E9ECEF, #FFFFFF);
+    color: var(--text-primary);
+    border-color: #CED4DA;
+  }
+  .titan-dashboard.light .titan-button:hover {
+    background: linear-gradient(145deg, var(--accent-primary), var(--accent-secondary));
+    color: #FFF;
+    border-color: var(--accent-primary);
+  }
+  .titan-dashboard.light .titan-button.active {
+    background: linear-gradient(145deg, var(--accent-primary), var(--accent-secondary));
+    color: #FFF !important;
+    border-color: var(--accent-primary);
+  }
+  .titan-dashboard.light .titan-tab-buttons .titan-button:hover {
+      background: #E9ECEF;
+      color: var(--accent-primary);
+  }
+  .titan-dashboard.light .titan-tab-buttons .titan-button.active {
+      background: linear-gradient(145deg, var(--accent-primary), var(--accent-secondary));
+      color: #FFF !important;
+  }
+  .titan-dashboard.light .titan-select {
+      background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007BFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  }
+  .titan-dashboard.light .titan-console {
+      color: #0056b3;
+      background-color: rgba(0,0,0,0.05);
+  }
+
+  /* Blue Theme */
+  .titan-dashboard.blue {
+    --bg-primary: #001529;
+    --bg-secondary: #00203F;
+    --bg-panel: #002A53;
+    --bg-panel-hover: #003366;
+    --accent-primary: #3399FF;
+    --accent-secondary: #66CCFF;
+    --text-primary: #AAD4FF;
+    --text-secondary: #88BBDD;
+    --border-color: #004C99;
+    --panel-shadow: 0 8px 25px rgba(51, 153, 255, 0.15), 0 4px 10px rgba(0, 0, 0, 0.25);
+    --button-shadow: 0 4px 15px rgba(51, 153, 255, 0.1);
+    color: var(--text-primary);
+  }
+   .titan-dashboard.blue .titan-select {
+      background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%233399FF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  }
+  .titan-dashboard.blue .titan-console {
+      color: var(--accent-secondary);
+  }
+
+  .titan-display-none {
+    display: none !important;
+  }
+
+  @media (max-width: 700px) {
+    .titan-container {
+      max-width: 100vw;
+      padding: 0 2vw;
+      gap: 12px;
+    }
+    .titan-panel {
+      padding: 10px 2vw;
+    }
+    .titan-button, .titan-tab-buttons .titan-button {
+      padding: 7px 0;
+      font-size: 0.95rem;
+      min-width: 60px;
+    }
+    .titan-tab-buttons {
+      gap: 2px;
+      padding: 2px;
+    }
+    .titan-panel h2 {
+      font-size: 1.05rem;
+      padding-bottom: 5px;
+    }
+  }
+</style>
+
+<div class="titan-dashboard">
+  <div class="titan-container">
+    <div class="titan-panel">
+      <div class="titan-status">
+        <div>
+          <strong>RITESH CORPORATION</strong><br />
+          CONNECTED TO RITESH'S SERVER
+        </div>
+        <div class="titan-badge">Online</div>
+      </div>
+    </div>
+
+    <div class="titan-panel">
+      <h2>Free Fire Architecture</h2>
+      <div class="titan-section-buttons" id="architecture-buttons">
+        <div class="titan-button" data-arch="32-bit">32-bit</div>
+        <div class="titan-button active" data-arch="64-bit">64-bit</div>
+      </div>
+    </div>
+    <div class="titan-panel">
+      <div class="titan-tab-buttons">
+        <div class="titan-button active" data-tab="headshot">Headshot</div>
+        <div class="titan-button" data-tab="sniper">Sniper</div>
+        <div class="titan-button" data-tab="extra">Extra</div>
+        <div class="titan-button" data-tab="titan">TITAN</div>
+        <div class="titan-button" data-tab="internal">INTERNAL</div>
+        <div class="titan-button" data-tab="settings">Settings</div>
+      </div>
+    </div>
+
+    <div class="titan-panel titan-content-panel active" id="headshot">
+      <h2>Aimbot Options</h2>
+      <div class="titan-aim-section">
+        <div class="titan-aim-row">
+          <div>
+            <div class="titan-aim-label">Scan Enemies</div>
+            <div class="titan-note">Scans enimies in the match</div>
+          </div>
+          <div class="titan-button titan-aim-option" data-group="aim-row" data-value="default" onclick="sendCommand('aimbotscan')">
+            Scan Players</div>
+        </div>
+
+        <div class="titan-aim-row">
+          <div>
+            <div class="titan-aim-label">Aim Position</div>
+            <div class="titan-note">Hotkey - Help</div>
+          </div>
+          <div class="titan-aim-buttons">
+            <div class="titan-button titan-aim-option" data-group="aimpos" data-value="neck" onclick="sendCommand('aimbotenable')">
+              Neck 1</div>
+            <div class="titan-button titan-aim-option active" data-group="aimpos" data-value="default"
+              onclick="sendCommand('aimbotdisable')">Default</div>
+          </div>
+        </div>
+
+        <div class="titan-aim-row">
+          <div>
+            <div class="titan-aim-label">Other Aim Position</div>
+            <div class="titan-note">Hotkey - Help</div>
+          </div>
+          <select class="titan-select" id="other-aimpos">
+            <option value="RightShoulder">Right Shoulder</option>
+            <option value="LeftShoulder">Left Shoulder</option>
+          </select>
+        </div>
+
+        <!-- Left Shoulder Section (Initially Hidden) -->
+        <div class="titan-aim-row leftShoulder titan-display-none">
+          <div>
+            <div class="titan-aim-label">Headshot Legit</div>
+            <div class="titan-note">Left Shoulder</div>
+          </div>
+          <div class="titan-aim-buttons">
+            <div class="titan-button titan-aim-option" data-group="headshotlegit" data-value="enable"
+              onclick="sendCommand('leftShoulderOn')">Enable</div>
+            <div class="titan-button titan-aim-option active" data-group="headshotlegit" data-value="disable"
+              onclick="sendCommand('leftShoulderOff')">Disable</div>
+          </div>
+        </div>
+
+        <!-- Right Shoulder Section -->
+        <div class="titan-aim-row rightShoulder">
+          <div>
+            <div class="titan-aim-label">Headshot Legit</div>
+            <div class="titan-note">Right Shoulder</div>
+          </div>
+          <div class="titan-aim-buttons">
+            <div class="titan-button titan-aim-option" data-group="headshotlegit" data-value="enable"
+              onclick="sendCommand('rightShoulderOn')">Enable</div>
+            <div class="titan-button titan-aim-option active" data-group="headshotlegit" data-value="disable"
+              onclick="sendCommand('rightShoulderOff')">Disable</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="titan-panel titan-content-panel" id="sniper">
+      <h2>Sniper Options</h2>
+      <div class="titan-sniper-section">
+        <div class="titan-sniper-row">
+          <div>
+            <div class="titan-sniper-label">Sniper Load</div>
+            <div class="titan-note">Loads Sniper Scope & Switch</div>
+          </div>
+          <div class="titan-sniper-buttons">
+            <div class="titan-button titan-aim-option" data-group="aim-row" data-value="default"
+              onclick="sendCommand('loadsniper')">Scan Sniper</div>
+          </div>
+        </div>
+        <div class="titan-sniper-row">
+          <div>
+            <div class="titan-sniper-label">Sniper Scope</div>
+            <div class="titan-note">Turn on Sniper Scope</div>
+          </div>
+          <div class="titan-sniper-buttons">
+            <div class="titan-button titan-sniper-option" data-group="autozoom" data-value="on"
+              onclick="sendCommand('sniperscopeenable')">Enable</div>
+            <div class="titan-button titan-sniper-option active" data-group="autozoom" data-value="off"
+              onclick="sendCommand('sniperscopedisable')">Disable</div>
+          </div>
+        </div>
+        <div class="titan-sniper-row">
+          <div>
+            <div class="titan-sniper-label">Sniper Switch</div>
+            <div class="titan-note">Turn on Sniper fast switch</div>
+          </div>
+          <div class="titan-sniper-buttons">
+            <div class="titan-button titan-sniper-option" data-group="dropcomp" data-value="enable"
+              onclick="sendCommand('sniperswitchenable')">Enable</div>
+            <div class="titan-button titan-sniper-option active" data-group="dropcomp" data-value="disable"
+              onclick="sendCommand('sniperswitchdisable')">Disable</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TITAN TAB -->
+    <div class="titan-panel titan-content-panel" id="titan">
+      <h2>TITAN Hacks</h2>
+      <div class="titan-extra-section">
+        <div class="titan-extra-row">
+          <div>
+            <div class="titan-extra-label">Speed Hack</div>
+            <div class="titan-note">Modify movement speed</div>
+          </div>
+          <div class="titan-extra-buttons">
+            <div class="titan-button titan-extra-option" data-group="speedhack" data-value="load" onclick="sendCommand('speedhackload')">Load</div>
+            <div class="titan-button titan-extra-option" data-group="speedhack" data-value="enable" onclick="sendCommand('speedhackenable')">Enable</div>
+            <div class="titan-button titan-extra-option" data-group="speedhack" data-value="disable" onclick="sendCommand('speedhackdisable')">Disable</div>
+          </div>
+        </div>
+        <div class="titan-extra-row">
+          <div>
+            <div class="titan-extra-label">Wallhack</div>
+            <div class="titan-note">See through walls</div>
+          </div>
+          <div class="titan-extra-buttons">
+            <div class="titan-button titan-extra-option" data-group="wallhack" data-value="load" onclick="sendCommand('wallhackload')">Load</div>
+            <div class="titan-button titan-extra-option" data-group="wallhack" data-value="enable" onclick="sendCommand('wallhackenable')">Enable</div>
+            <div class="titan-button titan-extra-option" data-group="wallhack" data-value="disable" onclick="sendCommand('wallhackdisable')">Disable</div>
+          </div>
+        </div>
+        <div class="titan-extra-row">
+          <div>
+            <div class="titan-extra-label">Aimbot Body</div>
+            <div class="titan-note">Aim at body</div>
+          </div>
+          <div class="titan-extra-buttons">
+            <div class="titan-button titan-extra-option" data-group="aimbotbody" data-value="load" onclick="sendCommand('aimbotbodyload')">Load</div>
+            <div class="titan-button titan-extra-option" data-group="aimbotbody" data-value="enable" onclick="sendCommand('aimbotbodyen')">Enable</div>
+            <div class="titan-button titan-extra-option" data-group="aimbotbody" data-value="disable" onclick="sendCommand('aimbotbodydis')">Disable</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERNAL TAB -->
+<div class="titan-panel titan-content-panel" id="internal">
+  <h2>INTERNAL Hacks</h2>
+  <div class="titan-extra-section">
+    <div class="titan-extra-row">
+      <div>
+        <div class="titan-extra-label">Aimbot Load</div>
+        <div class="titan-note">Scan and load aimbot addresses</div>
+      </div>
+      <div class="titan-extra-buttons">
+        <div class="titan-button titan-extra-option" onclick="sendInternalCommand('load_aimbot')">Load Aimbot</div>
+      </div>
+    </div>
+    <div class="titan-extra-row">
+      <div>
+        <div class="titan-extra-label">Head Aim</div>
+        <div class="titan-note">Enable/Disable head aim</div>
+      </div>
+      <div class="titan-extra-buttons">
+        <div class="titan-button titan-extra-option" onclick="sendInternalCommand('head_aim_on')">Enable</div>
+        <div class="titan-button titan-extra-option" onclick="sendInternalCommand('head_aim_off')">Disable</div>
+      </div>
+    </div>
+    <div class="titan-extra-row">
+      <div>
+        <div class="titan-extra-label">Right Shoulder Aim</div>
+        <div class="titan-note">Enable right shoulder aim</div>
+      </div>
+      <div class="titan-extra-buttons">
+        <div class="titan-button titan-extra-option" onclick="sendInternalCommand('right_shoulder_aim_on')">Enable</div>
+      </div>
+    </div>
+    <div class="titan-extra-row">
+      <div>
+        <div class="titan-extra-label">Left Shoulder Aim</div>
+        <div class="titan-note">Enable left shoulder aim</div>
+      </div>
+      <div class="titan-extra-buttons">
+        <div class="titan-button titan-extra-option" onclick="sendInternalCommand('left_shoulder_aim_on')">Enable</div>
+      </div>
+    </div>
+    <div class="titan-extra-row">
+      <div>
+        <div class="titan-extra-label">Shoulder Aim Off</div>
+        <div class="titan-note">Disable all shoulder aims</div>
+      </div>
+      <div class="titan-extra-buttons">
+        <div class="titan-button titan-extra-option" onclick="sendInternalCommand('shoulder_aim_off')">Disable</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- EXTRA TAB -->
+    <div class="titan-panel titan-content-panel" id="extra">
+      <h2>Extra Options</h2>
+      <div class="titan-extra-section">
+        <div class="titan-extra-row">
+          <div>
+            <div class="titan-extra-label">Chams 3D</div>
+            <div class="titan-note">Press Del to remove.</div>
+          </div>
+          <div class="titan-extra-buttons">
+            <div class="titan-button titan-extra-option" data-group="chams3d" data-value="on" onclick="sendCommand('chams3d')">
+              Enable</div>
+          </div>
+        </div>
+        <div class="titan-extra-row">
+          <div>
+            <div class="titan-extra-label">Chams Menu</div>
+            <div class="titan-note">Press Insert to hide/unhide</div>
+          </div>
+          <div class="titan-extra-buttons">
+            <div class="titan-button titan-extra-option" data-group="chamsmenu" data-value="on" onclick="sendCommand('chamsmenu')">
+              Enable</div>
+          </div>
+        </div>
+        <div class="titan-extra-row">
+          <div>
+            <div class="titan-extra-label">Chams 3D Box</div>
+            <div class="titan-note">Press Del to remove.</div>
+          </div>
+          <div class="titan-extra-buttons">
+            <div class="titan-button titan-extra-option" data-group="box3d" data-value="on" onclick="sendCommand('box3d')">Enable
+            </div>
+          </div>
+        </div>
+        <div class="titan-extra-row">
+          <div>
+            <div class="titan-extra-label">No Recoil</div>
+            <div class="titan-note">Remove weapon recoil</div>
+          </div>
+          <div class="titan-extra-buttons">
+            <div class="titan-button titan-extra-option" data-group="norecoil" data-value="on"
+              onclick="sendCommand('removerecoil')">On</div>
+            <div class="titan-button titan-extra-option active" data-group="norecoil" data-value="off"
+              onclick="sendCommand('addrecoil')">Off</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS TAB -->
+    <div class="titan-panel titan-content-panel" id="settings">
+      <h2>Settings</h2>
+      <div class="titan-settings-section">
+        <div class="titan-settings-row">
+          <div>
+            <div class="titan-settings-label">Theme Selector</div>
+            <select class="titan-select" id="theme-selector">
+              <option value="dark" selected>Dark</option>
+              <option value="light">Light</option>
+            </select>
+          </div>
+        </div>
+        <div class="titan-settings-row">
+          <div>
+            <div class="titan-settings-label">Hotkeys</div>
+            <div class="titan-note">No Hotkey Feature yet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="titan-panel">
+      <h2>Console</h2>
+      <div class="titan-console" id="console"></div>
+    </div>
+  </div>
+
+  <div class="titan-notifications-container" id="notifications-container"></div>
+</div>
+
+<script>
+  (() => {
+    const consoleEl = document.getElementById('console');
+    const notificationsContainer = document.getElementById('notifications-container');
+
+    function log(message) {
+      const now = new Date();
+      const time = now.toLocaleTimeString();
+      consoleEl.textContent += `[${time}] ${message}\n`;
+      consoleEl.scrollTop = consoleEl.scrollHeight;
+    }
+
+    function showNotification(message) {
+      const notif = document.createElement('div');
+      notif.className = 'titan-notification';
+      notif.textContent = message;
+      notificationsContainer.appendChild(notif);
+
+      notif.addEventListener('animationend', () => {
+        notificationsContainer.removeChild(notif);
+      });
+    }
+    
+    async function checkStatus() {
+      try {
+        const res = await fetch('/status');
+        const data = await res.json();
+        const badge = document.querySelector('.titan-badge');
+
+        if (data.status === 'online') {
+          badge.textContent = 'Online';
+          badge.style.background = 'linear-gradient(45deg, var(--accent-primary), var(--accent-secondary))';
+        } else {
+          badge.textContent = 'Offline';
+          badge.style.background = 'linear-gradient(45deg, #ff3366, #ff0000)';
+        }
+      } catch (err) {
+        console.error("Status check failed:", err);
+      }
+    }
+
+    setInterval(checkStatus, 3000);
+    checkStatus();
+
+    function setupToggleButtons(containerSelector) {
+      const container = document.querySelector(containerSelector);
+      if (!container) return;
+      container.querySelectorAll('.titan-button').forEach(button => {
+        button.addEventListener('click', () => {
+          const group = button.dataset.group;
+          if (!group) return;
+
+          if (button.classList.contains('active')) return;
+
+          container.querySelectorAll(`.titan-button.active[data-group="${group}"]`).forEach(btn => {
+            btn.classList.remove('active');
+          });
+
+          button.classList.add('active');
+
+          const value = button.dataset.value || "(unknown)";
+        });
+      });
+    }
+
+    function setupArchitectureButtons() {
+      const container = document.getElementById('architecture-buttons');
+      if (!container) return;
+      const buttons = container.querySelectorAll('.titan-button');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('active')) return;
+          buttons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const arch = btn.dataset.arch || "(unknown)";
+          log(`Architecture set to: ${arch}`);
+          showNotification(`Architecture set to ${arch}`);
+        });
+      });
+    }
+
+    const tabButtons = document.querySelectorAll('.titan-tab-buttons .titan-button');
+    const contentPanels = document.querySelectorAll('.titan-content-panel');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tab = button.getAttribute('data-tab');
+
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        contentPanels.forEach(panel => {
+          if (panel.id === tab) panel.classList.add('active');
+          else panel.classList.remove('active');
+        });
+      });
+    });
+
+    const archButtons = document.querySelectorAll('#architecture-buttons .titan-button');
+    archButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        archButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        log(`Architecture selected: ${btn.textContent}`);
+      });
+    });
+
+    window.sendCommand = function (command) {
+      if (command == "aimbotscan") {
+        log(`Initializing Aimbot.`);
+      }
+      else if (command == "loadsniper") {
+        log(`Initializing Sniper Functions.`)
+      }
+      else if (command == "removerecoil") {
+        log(`Removing Recoil.`)
+      }
+      else if (command == "addrecoil") {
+        log(`Restoring Recoil.`)
+      }
+
+      fetch('/execute', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ command }),
+      })
+        .then(response => {
+          if (!response.ok) throw new Error(`Server error: ${response.status}`);
+          return response.json();
+        })
+        .then(data => {
+          if (data.message) {
+            log(`${data.message}`);
+          } else {
+            log(`Failed`);
+          }
+        })
+        .catch(err => {
+          log(`Error: ${err.message}`);
+          showNotification(`Error.`);
+        });
+    };
+
+    document.querySelectorAll('.titan-button').forEach(btn => {
+      btn.addEventListener('click', () => {
+      });
+    });
+
+    setupArchitectureButtons();
+    setupToggleButtons('#headshot .titan-aim-section');
+    setupToggleButtons('#sniper .titan-sniper-section');
+    setupToggleButtons('#extra .titan-extra-section');
+    setupToggleButtons('#settings .titan-settings-section');
+
+    const themeSelector = document.getElementById('theme-selector');
+    themeSelector.addEventListener('change', () => {
+      document.querySelector('.titan-dashboard').className = `titan-dashboard ${themeSelector.value}`;
+      log(`Theme changed to: ${themeSelector.value}`);
+      showNotification(`Theme changed to: ${themeSelector.value}`);
+    });
+
+  })();
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const select = document.getElementById('other-aimpos');
+  const leftShoulder = document.querySelector('.leftShoulder');
+  const rightShoulder = document.querySelector('.rightShoulder');
+
+  select.addEventListener('change', function () {
+    const selectedValue = select.value;
+
+    if (selectedValue === 'LeftShoulder') {
+      leftShoulder.classList.remove('titan-display-none');
+      rightShoulder.classList.add('titan-display-none');
+    } else if (selectedValue === 'RightShoulder') {
+      leftShoulder.classList.add('titan-display-none');
+      rightShoulder.classList.remove('titan-display-none');
+    }
+  });
+});
+</script>
+<!-- END DASHBOARD UI -->
+
+<script>
+function sendInternalCommand(command) {
+  fetch('/execute', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ command }),
+  })
+  .then(res => res.json())
+  .then(data => {
+    // Log to the main console using log() function
+    if (typeof log === 'function') {
+      log(data.message);
+    } else {
+      const consoleEl = document.getElementById('console');
+      if (consoleEl) {
+        consoleEl.textContent += `> ${data.message}\n`;
+        consoleEl.scrollTop = consoleEl.scrollHeight;
+      } else {
+        console.log(data.message);
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>
